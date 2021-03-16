@@ -1,8 +1,47 @@
-.user-detail {
+.user-detail-wrapper {
   display: flex;
   justify-content: center;
-  align-items: center;
+  padding-top: 40px;
+}
+
+.user-detail-back-link {
+  font-size: 20px;
+  display: block;
+  border: 1px solid #2d0241;
+  border-radius: 25px;
+  width: 120px;
+  height: 35px;
+  padding-top: 10px;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+.user-detail {
   color: #2d0241;
   font-size: 26px;
   height: 50%;
+  width: 500px;
+  .user-detail-info-block {
+    margin-bottom: 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    .user-detail-info-block-title {
+      font-weight: 700;
+    }
+    .user-detail-info-block-value {
+      display: flex;
+      justify-content: flex-end;
+      padding-left: 15px;
+      font-weight: 400;
+      .block-value-address {
+        .user-address-data {
+          display: flex;
+          justify-content: flex-end;
+          margin-bottom: 10px;
+        }
+      }
+    }
+  }
 }

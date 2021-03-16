@@ -1,4 +1,34 @@
-<div class="user-detail">
-  {{ (userDetail$ | async)?.name }}
-  {{ (userDetail$ | async)?.email }}
+<mat-progress-bar mode="indeterminate" *ngIf="(userDetailLoading$ | async)"></mat-progress-bar>
+<div class="user-detail-wrapper" *ngIf="!(userDetailLoading$ | async)">
+  <div class="user-detail">
+    <a class="user-detail-back-link" routerLink="/users">Back</a>
+    <div class="user-detail-info-block">
+      <div class="user-detail-info-block-title">Name:</div>
+      <div class="user-detail-info-block-value">
+        {{ userDetail?.name }}
+      </div>
+    </div>
+    <div class="user-detail-info-block">
+      <div class="user-detail-info-block-title">User name:</div>
+      <div class="user-detail-info-block-value">
+        {{ userDetail?.username }}
+      </div>
+    </div>
+    <div class="user-detail-info-block">
+      <div class="user-detail-info-block-title">Address:</div>
+      <div class="user-detail-info-block-value">
+        <div class="block-value-address">
+          <div class="user-address-data">city: {{ userDetail?.address?.city }}</div>
+          <div class="user-address-data">street: {{ userDetail?.address?.street }}</div>
+          <div class="user-address-data">suite: {{ userDetail?.address?.suite }}</div>
+        </div>
+      </div>
+    </div>
+    <div class="user-detail-info-block">
+      <div class="user-detail-info-block-title">Company:</div>
+      <div class="user-detail-info-block-value">
+        {{ userDetail?.company?.name }}
+      </div>
+    </div>
+  </div>
 </div>
