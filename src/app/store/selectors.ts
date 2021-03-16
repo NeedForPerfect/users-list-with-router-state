@@ -1,21 +1,49 @@
-import { createSelector } from '@ngrx/store';
+import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { UsersState } from '../store/reducer';
+import { MergedRouteReducerState, UserRouterState } from '../models/user-router-state.model';
 
+export const userState = (state) => state.userState;
 
-const _getUsers = createSelector(
-  (state: { userState: UsersState }) => state.userState,
-  (state: UsersState): any => {
+export const getUsers = createSelector(
+  userState,
+  (state: UsersState) => {
+    console.log('Selector Works');
   if (state) return state.users
   else return null;
 });
-function getUsers(): any { return _getUsers; } // Wrapper for AOT
 
-const _getUsersLoading = createSelector(
-  (state: { userState: UsersState }) => state.userState,
+
+export const getUserDeatilLoading = createSelector(
+  userState,
+  (state: UsersState): any => {
+    if (state) return state.detailUserLoading
+    else return null;
+});
+
+
+
+export const getUserDetail = createSelector(
+  userState,
+  (state: UsersState) => {
+  if (state) return state.detailUser
+  else return null;
+});
+
+
+export const getUsersLoading = createSelector(
+  userState,
   (state: UsersState): any => {
     if (state) return state.usersLoading
     else return null;
 });
-function getUsersLoading(): any { return _getUsersLoading; } // Wrapper for AOT
 
-export { getUsers, getUsersLoading };
+
+export const getRouterReducerState = createFeatureSelector<MergedRouteReducerState>('router');
+
+
+export const getMergedRoute = createSelector(
+  getRouterReducerState,
+  (routerReducerState: { state: UserRouterState }) => routerReducerState ? routerReducerState.state : null
+);
+
+
