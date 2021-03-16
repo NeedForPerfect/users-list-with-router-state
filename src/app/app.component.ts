@@ -9,30 +9,5 @@ import { getMergedRoute, getUserDetail, getUsers, userState } from '../app/store
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit {
-
-  constructor(
-    private store: Store<UsersState>
-  ) {
-
-  }
-
-  ngOnInit(): void {
-
-    // this.store.select(getUsers).subscribe(
-    //   (users) => {
-    //     console.log('We have got Users', users);
-    //   }
-    // );
-
-    // this.store.dispatch(ApiGetIUsers()());
-
-    // this.store.dispatch(ApiGetIUserDetail()());
-
-    // this.store.select(userState).subscribe(userDetail => {
-    //   console.log('User State', userDetail);
-    // });
-
-  }
-
+export class AppComponent {
 }
