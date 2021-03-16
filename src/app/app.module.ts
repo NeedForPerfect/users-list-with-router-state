@@ -12,6 +12,8 @@ import { MergedRouterStateSerializer } from '../app/store/routes-serialzer/route
 import { Routes, RouterModule } from '@angular/router';
 import { UserListComponent } from './components/user-list/user-list.component';
 import { UserDetailComponent } from './components/user-detail/user-detail.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ExportMaterialModule } from './shared/material/export-material.module';
 
 export const routerStateConfig = {
   stateKey: 'router', // state-slice name for routing state
@@ -24,7 +26,9 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    UserListComponent,
+    UserDetailComponent
   ],
   imports: [
     BrowserModule,
@@ -32,7 +36,9 @@ const routes: Routes = [
     StoreModule.forRoot({userState: usersReducer, [routerStateConfig.stateKey]: routerReducer }),
     StoreRouterConnectingModule.forRoot(routerStateConfig),
     EffectsModule.forRoot([UserEffects]),
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    BrowserAnimationsModule,
+    ExportMaterialModule
   ],
   providers: [
     {

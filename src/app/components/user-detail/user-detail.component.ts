@@ -1,8 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { Subject } from 'rxjs';
+import { filter, map, tap } from 'rxjs/operators';
+import { User } from 'src/app/models/user.model';
 import { ApiGetIUserDetail } from 'src/app/store/actions';
 import { UsersState } from 'src/app/store/reducer';
-import { getUserDetail } from 'src/app/store/selectors';
+import { getUserDeatilLoading, getUserDetail } from 'src/app/store/selectors';
 
 @Component({
   selector: 'app-user-detail',
@@ -11,15 +14,21 @@ import { getUserDetail } from 'src/app/store/selectors';
 })
 export class UserDetailComponent implements OnInit {
 
+  destroy$ = new Subject();
+  userDetail$ = this.store.select(getUserDetail);
+  userDetailLoading$ = this.store.select(getUserDeatilLoading);
+
   constructor(
     private store: Store<UsersState>
   ) { }
 
-  ngOnInit(): void {
-    this.store.select(getUserDetail).subscribe(userDetail => {
-      console.log('User Detail', userDetail);
-    });
+  getUserDetail() {
     this.store.dispatch(ApiGetIUserDetail()());
   }
 
+  ngOnInit(): void {
+    this.getUserDetail();
+  }
+
 }
+
