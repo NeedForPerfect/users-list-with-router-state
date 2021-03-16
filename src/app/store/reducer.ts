@@ -5,32 +5,31 @@ import { User } from '../models/user.model';
 export interface UsersState {
   users: User[];
   usersLoading: boolean;
-  detailUser: User;
-  detailUserLoading: boolean;
+  userDetail: User;
+  userDetailLoading: boolean;
 }
 
 const initialState: UsersState = {
   users: [],
   usersLoading: false,
-  detailUser: null,
-  detailUserLoading: false
+  userDetail: null,
+  userDetailLoading: false
 };
 
 export const _usersReducer = createReducer(
   initialState,
   on(ApiGetIUsers(), (state, action) => {
-    return { ...state, usrersLoading: true };
+    return { ...state, usersLoading: true };
   }),
   on(ApiGetIUsersSuccess(),  (state, action: { users: User[] }) => {
     const { users } = action;
     return { ...state, usersLoading: false, users };
   }),
   on(ApiGetIUserDetail(), (state, action) => {
-    return { ...state, detailUserLoading: false };
+    return { ...state, detailUserLoading: true };
   }),
   on(ApiGetIUserDetailSuccess(),  (state, {userDetail}: { userDetail: User }) => {
-    console.log('Get User Detial', userDetail);
-    return { ...state, usersLoading: true, userDetail };
+    return { ...state, detailUserLoading: false, userDetail };
   })
 );
 

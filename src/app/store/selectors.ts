@@ -2,12 +2,11 @@ import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { UsersState } from '../store/reducer';
 import { MergedRouteReducerState, UserRouterState } from '../models/user-router-state.model';
 
-export const userState = (state) => state.userState;
+export const userState = createFeatureSelector<UsersState>('userState');
 
 export const getUsers = createSelector(
   userState,
   (state: UsersState) => {
-    console.log('Selector Works');
   if (state) return state.users
   else return null;
 });
@@ -16,7 +15,7 @@ export const getUsers = createSelector(
 export const getUserDeatilLoading = createSelector(
   userState,
   (state: UsersState): any => {
-    if (state) return state.detailUserLoading
+    if (state) return state.userDetailLoading
     else return null;
 });
 
@@ -25,7 +24,7 @@ export const getUserDeatilLoading = createSelector(
 export const getUserDetail = createSelector(
   userState,
   (state: UsersState) => {
-  if (state) return state.detailUser
+  if (state) return state.userDetail
   else return null;
 });
 

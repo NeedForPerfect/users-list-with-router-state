@@ -29,7 +29,7 @@ const routes: Routes = [
   imports: [
     BrowserModule,
     HttpClientModule,
-    StoreModule.forRoot({userSate: usersReducer, [routerStateConfig.stateKey]: routerReducer }),
+    StoreModule.forRoot({userState: usersReducer, [routerStateConfig.stateKey]: routerReducer }),
     StoreRouterConnectingModule.forRoot(routerStateConfig),
     EffectsModule.forRoot([UserEffects]),
     RouterModule.forRoot(routes)

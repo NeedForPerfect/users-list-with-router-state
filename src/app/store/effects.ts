@@ -22,7 +22,6 @@ export class UserEffects {
   loadUserDetail$ = createEffect(() => this.actions$.pipe(
     ofType(ApiGetIUserDetail()),
     withLatestFrom(this.store.select(getMergedRoute)),
-    // tap(([, routerState]) => console.log('withLatestFrom', routerState)),
     map(([, routerState]: [any, UserRouterState]) => routerState.params['id']),
     mergeMap((userId) => this.userService.getUserDetail(userId).pipe(
       map((userDetail) => ApiGetIUserDetailSuccess()({userDetail}))
