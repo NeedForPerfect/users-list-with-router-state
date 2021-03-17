@@ -20,6 +20,7 @@ export const routerStateConfig = {
 };
 
 const routes: Routes = [
+  { path: '', redirectTo: 'users', pathMatch: 'full' },
   {path: 'users', component: UserListComponent },
   {path: 'users/:id', component: UserDetailComponent }
 ];
