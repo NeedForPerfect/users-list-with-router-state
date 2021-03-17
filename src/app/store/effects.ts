@@ -1,14 +1,13 @@
 import { Injectable } from '@angular/core';
-import { exhaustMap, filter, map, mergeMap, tap, withLatestFrom } from 'rxjs/operators';
-import { Action, Store } from '@ngrx/store';
+import { map, mergeMap, withLatestFrom } from 'rxjs/operators';
+import { Store } from '@ngrx/store';
 import { Actions, createEffect, ofType } from '@ngrx/effects'
 import { UsersState } from './reducer';
 import { ApiGetIUserDetail, ApiGetIUsers, ApiGetIUsersSuccess, ApiGetIUserDetailSuccess } from './actions';
 import { UserServiceService } from '../services/user-service.service';
-import { getMergedRoute, userState } from './selectors';
 import { UserRouterState } from '../models/user-router-state.model';
 import { User } from '../models/user.model';
-import { Observable, of } from 'rxjs';
+import { of } from 'rxjs';
 
 @Injectable()
 export class UserEffects {
