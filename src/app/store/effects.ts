@@ -27,7 +27,7 @@ export class UserEffects {
     mergeMap(([, state]: [any, { userState: UsersState, router: { state: UserRouterState } }]) => {
       const { userState, router } = state;
       const requestedUserId: number = +router.state.params['id'];
-      const existedInStoreUser: User = findRequestedUserExistsInStore(userState, requestedUserId);
+      const existedInStoreUser: User = searchRequestedUserInStore(userState, requestedUserId);
       if (existedInStoreUser) {
         return of(existedInStoreUser).pipe(map((userDetail) => ApiGetIUserDetailSuccess()({userDetail})));
       } else {
@@ -46,7 +46,7 @@ export class UserEffects {
   ) {}
 }
 
-function findRequestedUserExistsInStore(userState: UsersState, userId: number): User | null {
+function searchRequestedUserInStore(userState: UsersState, userId: number): User | null {
   if (userState.users && userState.users) {
     const foundUser: User = userState.users.find(u => u.id === userId);
     return foundUser ? foundUser : null
